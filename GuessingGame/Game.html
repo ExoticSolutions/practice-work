@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>The Guessing Game</title>
+  </head>
+  <body id="root">
+    <center>
+      <br />
+      <br />
+      <h1 id="style-title">Welcome to the guessing game</h1>
+      <div id="guess-section">
+        <p>Enter a number between 1-10</p>
+
+        <input type="text" id="guess" />
+        <br />
+        <br />
+        <button
+          onclick="
+        const userGuess = document.getElementById('guess').value;
+        proccessGuess(Number(userGuess))
+        console.log(userGuess);
+        "
+        >
+          Submit Guess
+        </button>
+        <br />
+        <br />
+        <button
+          onclick="
+          userRecord.wins = 0;
+          userRecord.losses = 0;
+          userRecord.tries = 7;
+          localStorage.removeItem('userRecord')
+        "
+        >
+          Reset Record
+        </button>
+
+        <br />
+        <br />
+        <div id="output">
+          <br />
+          <br />
+        </div>
+      </div>
+    </center>
+    <script>
+      const userRecord = localStorage.getItem("userRecord") || {
+        wins: 0,
+        losses: 0,
+        tries: 7,
+      };
+
+      let computerGuess = Math.ceil(Math.random() * 10);
+      console.log(computerGuess);
+
+      function proccessGuess(guess) {
+        let outputAnswer = document.getElementById("output");
+
+        if (guess !== computerGuess) {
+          if (userRecord.tries !== 0) {
+            userRecord.tries -= 1;
+            userRecord.losses += 1;
+            outputAnswer.innerHTML = `Wrong Tries Left (${userRecord.tries} Record: Wins (${userRecord.wins}) Losses: (${userRecord.losses}))`;
+          } else if (userRecord.tries === 0) {
+            outputAnswer.innerHTML = `Out of tries refresh page to restart:( Answer: ${computerGuess} Record: Wins (${userRecord.wins}) Losses: (${userRecord.losses}))`;
+          }
+        } else if (guess === computerGuess) {
+          console.log("correct");
+          userRecord.wins += 1;
+
+          outputAnswer.innerHTML = `Correct Wins: (${userRecord.wins}) Losses: (${userRecord.losses})`;
+          computerGuess = Math.ceil(Math.random() * 10);
+          console.log(computerGuess);
+        }
+      }
+    </script>
+  </body>
+</html>
