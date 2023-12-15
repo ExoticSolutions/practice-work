@@ -11,3 +11,5 @@ rock = 3
 these buttons are ordered in a logic manner , Rock is placed last as it beats scissors and paper , scissors is second as it an beat paper which ios the first value.
 
 once the user clicks button an alert will pop up showing the match results
+
+Guessing Game (Located in /GuessingGame)- guess a number between 1 and 10. computerGuess variable will be used to make the computer make a guess before the user submits the input and get another guess after submission if the user's guess is correct
