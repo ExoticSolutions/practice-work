@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS v2</title>
+  </head>
+  <body style="background-color: gray">
+    <center>
+      <br />
+      <h1>Rock Paper Scissors Game</h1>
+      <br />
+      <br />
+      <button
+        onclick="
+      runGame();
+      "
+      >
+        Rock
+      </button>
+
+      <button
+        onclick="
+      runGame();
+      "
+      >
+        Paper
+      </button>
+
+      <button
+        onclick="
+      runGame();
+      "
+      >
+        Scissors
+      </button>
+      <br />
+      <br />
+      <button
+        onclick="
+      localStorage.removeItem(userScore)
+      "
+      >
+        Reset Record
+      </button>
+      <br />
+      <br />
+      <div>
+        <p id="record"></p>
+      </div>
+    </center>
+    <script>
+      const userScore = JSON.parse(localStorage.getItem("userScore")) || {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+      };
+      function runGame() {
+        const computerGuess = Math.ceil(Math.random() * 3);
+        console.log(computerGuess);
+        localStorage.setItem(JSON.stringify(userScore), "userScore");
+      }
+    </script>
+  </body>
+</html>
