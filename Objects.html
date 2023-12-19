@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects</title>
+  </head>
+  <body>
+    <script>
+      const product1 = {
+        name: "Basketball",
+        price: 2095,
+      };
+
+      const product2 = {
+        name: "Shirt",
+        price: 2099,
+      };
+
+      console.log(product1);
+
+      product1.price += 500;
+      console.log(product1.price);
+
+      product1["delivery-time"] = "3 days";
+      console.log(product1["delivery-time"]);
+      console.log(product1);
+
+      function comparePrice(product1, product2) {
+        const price1 = product1.price;
+        const price2 = product2.price;
+
+        if (price1 > price2) {
+          console.log(`The product ${product2.name} is cheaper`);
+        } else if (price2 > price1) {
+          console.log(`The product ${product2.name} is cheaper`);
+        } else {
+          console.log(
+            `${product1.name} + ${product2.name} are both the same price`
+          );
+        }
+      }
+
+      comparePrice(product1, product2);
+    </script>
+  </body>
+</html>

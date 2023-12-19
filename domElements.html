@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS v2</title>
+  </head>
+  <body style="background-color: gray">
+    <center>
+      <br />
+      <h1>Rock Paper Scissors Game</h1>
+      <br />
+      <br />
+      <button
+        onclick="
+        userGuess = 1;
+      runGame(userGuess);
+      "
+      >
+        Rock
+      </button>
+
+      <button
+        onclick="
+        userGuess = 2;
+      runGame(userGuess);
+      "
+      >
+        Paper
+      </button>
+
+      <button
+        onclick="
+        userGuess = 3;
+
+      runGame(userGuess);
+      "
+      >
+        Scissors
+      </button>
+      <br />
+      <br />
+      <button
+        onclick="
+         userScore.wins = 0;
+         userScore.losses = 0;
+         userScore.ties = 0;
+         localStorage.removeItem(userScore);
+      "
+      >
+        Reset Record
+      </button>
+      <br />
+      <br />
+      <div>
+        <br />
+        <br />
+        <p class="result"></p>
+        <p class="record"></p>
+      </div>
+    </center>
+    <script>
+      const userScore = JSON.parse(localStorage.getItem("userScore")) || {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+      };
+      function runGame(userGuess) {
+        const resultElement = document.querySelector(".result");
+        const recordElement = document.querySelector(".record");
+
+        const computerGuess = Math.ceil(Math.random() * 3);
+        let gameResult;
+
+        gameResult = findResult(userGuess, computerGuess);
+        console.log(gameResult);
+        resultElement.innerHTML = `Result: ${gameResult}`;
+        recordElement.innerHTML = `Your Record: Wins (${userScore.wins}) Loss (${userScore.losses}) Ties (${userScore.ties})`;
+
+        localStorage.setItem(JSON.stringify(userScore), "userScore");
+      }
+
+      function findResult(userGuess, computerGuess) {
+        let userGameResult;
+        if (userGuess === 1) {
+          switch (computerGuess) {
+            case 1:
+              userScore.ties++;
+              userGameResult = "Tie";
+              break;
+
+            case 2:
+              userScore.losses++;
+              userGameResult = "Loss";
+              break;
+
+            case 3:
+              userSocre.wins++;
+              userGameResult = "Win";
+              break;
+          }
+        } else if (userGuess === 2) {
+          switch (computerGuess) {
+            case 1:
+              userScore.wins++;
+              userGameResult = "Win";
+              break;
+
+            case 2:
+              userScore.ties++;
+              userGameResult = "Tie";
+              break;
+
+            case 3:
+              userScore.losses++;
+              userGameResult = "Loss";
+              break;
+          }
+        } else if (userGuess === 3) {
+          switch (computerGuess) {
+            case 1:
+              userScore.losses++;
+              userGameResult = "Loss";
+              break;
+
+            case 2:
+              userScore.wins++;
+              userGameResult = "Win";
+              break;
+
+            case 3:
+              userScore.ties++;
+              userGameResult = "Tie";
+              break;
+          }
+        }
+        return userGameResult;
+      }
+    </script>
+  </body>
+</html>
