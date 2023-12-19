@@ -16,9 +16,38 @@
     <img src="./logo.webp" alt="" id="style-brand-nav" />
     <center>
       <h1 class="mt-5 mb-5">Welcome to amazon</h1>
-      <button id="cart-button">View Cart</button>
+      <button
+        id="cart-button"
+        data-bs-toggle="offcanvas"
+        aria-controls="userCart"
+        data-bs-target="#userCart"
+        onclick="
+        showUserCart();
+        "
+      >
+        View Cart
+      </button>
       <br />
       <br />
+      <div
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        id="userCart"
+        aria-labelledby="offcanvasExampleLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Your Cart</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="row userCartElement"></div>
+        </div>
+      </div>
     </center>
     <div class="container text-center">
       <div class="row" id="products-display"></div>
@@ -63,6 +92,27 @@
         console.log(`Added to cart ${productID}`);
         userCart.push(products[productID]);
         console.log(userCart);
+      }
+
+      function showUserCart() {
+        const userCartElement = document.querySelector(".userCartElement");
+
+        const userCartMap = userCart.map((item) => {
+          userCartElement.innerHTML +=
+            `<div class="card mb-3" key=${item} style="maxWidth: 540px;">\n` +
+            `<div class="row g-0">\n` +
+            `  <div class="col-md-4">\n` +
+            `    <img src=${item.url} class="img-fluid rounded-start" alt="">\n` +
+            `  </div>\n` +
+            `  <div class="col-md-8">\n` +
+            `    <div class="card-body">\n` +
+            `      <h5 class="card-title">${item.name}</h5>\n` +
+            `      <p class="card-text">$ ${item.price / 100}</p>\n` +
+            `    </div>\n` +
+            `</div>\n` +
+            `</div>\n` +
+            `</div>\n`;
+        });
       }
     </script>
     <script
