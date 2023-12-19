@@ -13,3 +13,6 @@ these buttons are ordered in a logic manner , Rock is placed last as it beats sc
 once the user clicks button an alert will pop up showing the match results
 
 Guessing Game (Located in /GuessingGame)- guess a number between 1 and 10. computerGuess variable will be used to make the computer make a guess before the user submits the input and get another guess after submission if the user's guess is correct
+
+
+Cart project simply adds products to a cart using object arrays and mapped out objects in the next project I will work on implementing quantity for products to prevent repetitive content in the cart offcanvas.
