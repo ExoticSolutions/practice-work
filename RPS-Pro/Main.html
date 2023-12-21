@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./Styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RPS Classic</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>RPS Pro v2</title>
+  </head>
+  <body id="root" class="container text-center">
+    <div>
+      <br />
+      <br />
+      <h1 class="Game-title">Rock Paper Scissors: Classic Edition</h1>
+      <br />
+      <br />
+      <p class="Select-attack-title">Select your move:</p>
+      <div class="row mt-5">
+        <br />
+        <br />
+        <br />
+        <div class="col">
+          <button
+            id="action"
+            class="action border border-black rounded-circle px-5 py-2"
+            onclick="
+            userValue = 1;
+            runGame(userValue);
+            "
+          >
+            👊
+          </button>
+        </div>
+        <div class="col">
+          <button
+            id="action"
+            class="border border-black rounded-circle px-5 py-2"
+            onclick="
+            userValue = 2;
+            runGame(userValue);
+            "
+          >
+            ✋
+            <br />
+          </button>
+        </div>
+        <div class="col">
+          <button
+            id="action"
+            class="border border-black rounded-circle px-5 py-2"
+            onclick="
+            userValue = 3;
+            runGame(userValue);
+            "
+          >
+            ✌️
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="auto-output mt-5"></div>
+        <div class="show-record"></div>
+      </div>
+      <div class="buttons">
+        <button
+          type="button"
+          onclick="
+          resetCurrentRecord();
+          "
+          class="mt-5 px-3 py-1 rounded"
+          id="reset-btn"
+        >
+          Reset Record
+        </button>
+        <button
+          type="button"
+          onclick="
+        showCurrentRecord();
+        "
+          class="mt-5 px-3 py-1 rounded"
+          id="reset-btn"
+        >
+          Show Record
+        </button>
+      </div>
+      <br />
+      <br />
+      <div class="">
+        <div class="">
+          <img src="./logo-exotic.png" alt="" class="brand-img ms-3" />
+        </div>
+      </div>
+    </div>
+    <script>
+      const userScore = JSON.parse(localStorage.getItem(`userScore`)) || {
+        wins: 0,
+        losses: 0,
+        ties: 0,
+      };
+      let userValue;
+      let computerMove;
+      let userMove;
+      let gameResult;
+
+      function runGame(userValue) {
+        const computerValue = Math.ceil(Math.random() * 3);
+        generateValues(computerValue, userValue);
+        console.log(`Success! ${computerValue}`);
+      }
+
+      function generateValues(computerValue, userValue) {
+        const showRecordElement = document.querySelector(".show-record");
+        showRecordElement.style.display = "none";
+        switch (computerValue) {
+          case 1:
+            computerMove = "Rock";
+            break;
+
+          case 2:
+            computerMove = "Paper";
+            break;
+
+          case 3:
+            computerMove = "Scissor";
+            break;
+        }
+
+        switch (userValue) {
+          case 1:
+            userMove = "Rock";
+            break;
+
+          case 2:
+            userMove = "Paper";
+            break;
+
+          case 3:
+            userMove = "Scissor";
+            break;
+        }
+
+        getGameResult();
+        processResult();
+        localStorage.setItem(JSON.stringify(userScore), "userScore");
+
+        showGameResult();
+        console.log(`Computer's move: ${computerMove}\nYour Move: ${userMove}`);
+      }
+
+      function showGameResult() {
+        const autoOutputElement = document.querySelector(".auto-output");
+
+        console.log(autoOutputElement);
+
+        autoOutputElement.innerText = `Game result: ${gameResult}`;
+        console.log(autoOutputElement);
+      }
+
+      function processResult() {
+        switch (gameResult) {
+          case "Win":
+            userScore.wins++;
+            break;
+
+          case "Loss":
+            userScore.losses++;
+            break;
+
+          case "Tie":
+            userScore.ties++;
+            break;
+        }
+        console.log(userScore);
+      }
+
+      function getGameResult() {
+        if (userMove === "Rock") {
+          switch (computerMove) {
+            case "Rock":
+              gameResult = "Tie";
+              break;
+
+            case "Paper":
+              gameResult = "Win";
+              break;
+
+            case "Scissor":
+              gameResult = "Win";
+              break;
+          }
+        } else if (userMove === "Paper") {
+          switch (computerMove) {
+            case "Rock":
+              gameResult = "Win";
+              break;
+
+            case "Paper":
+              gameResult = "Tie";
+              break;
+
+            case "Scissor":
+              gameResult = "Loss";
+              break;
+          }
+        } else if (userMove === "Scissors") {
+          switch (computerMove) {
+            case "Rock":
+              gameResult = "Loss";
+              break;
+
+            case "Paper":
+              gameResult = "Win";
+              break;
+
+            case "Scissor":
+              gameResult = "Tie";
+              break;
+          }
+        }
+        console.log(gameResult);
+      }
+
+      function resetCurrentRecord() {
+        const showRecordElement = document.querySelector(".show-record");
+        showRecordElement.style.display = "none";
+        userScore.wins = 0;
+        userScore.losses = 0;
+        userScore.ties = 0;
+        localStorage.removeItem(userScore);
+        console.log(`New Record:`, userScore);
+      }
+
+      function showCurrentRecord() {
+        const showRecordElement = document.querySelector(".show-record");
+
+        console.log(`Current Record:`, userScore);
+
+        showRecordElement.innerText = `Current saved record: ${userScore.wins}-${userScore.ties}-${userScore.losses} `;
+        showRecordElement.style.display = "block";
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

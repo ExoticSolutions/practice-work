@@ -1,0 +1,67 @@
+#root {
+  background-color: rgb(39, 39, 39);
+}
+
+.Game-title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  color: rgb(209, 190, 153);
+}
+
+.Select-attack-title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font: 700;
+  color: rgb(159, 155, 141);
+  text-decoration: underline;
+}
+
+#action {
+  font-size: 100px;
+  background-color: rgb(71, 71, 71);
+}
+
+#action:hover {
+  background-color: rgb(18, 194, 135);
+}
+
+#reset-btn {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font: 900;
+  background-color: rgb(132, 127, 122);
+}
+
+#reset-btn:hover {
+  background-color: rgb(18, 194, 135);
+}
+
+.auto-output {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font: 900;
+  font-size: 17px;
+  color: bisque;
+}
+
+.show-record {
+  display: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font: 900;
+  font-size: 17px;
+  color: bisque;
+}
+
+.credit-link {
+  font-size: 16px;
+  text-decoration: none;
+  color: beige;
+}
+
+.brand-img {
+  max-width: 40%;
+}
