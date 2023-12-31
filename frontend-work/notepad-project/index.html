@@ -12,51 +12,61 @@
       <h1 class="brand-name">NoteFlow</h1>
       <h6 class="brand-subtext mt-1">by ExoticSolutions</h6>
     </div>
-
-    <div class="mt-10 border border-stone-950 rounded bg-stone-700 ms-10 me-10">
+    <div class="main-content">
       <div
-        class="mt-5 text-center bg-gradient-to-r from-sky-200 text-transparent bg-clip-text border-top-title"
+        class="mt-10 border border-stone-950 rounded bg-stone-700 ms-10 me-10"
       >
-        Flowfolio
-      </div>
-      <div class="mt-10 flex justify-center gap-10">
-        <button
-          class="batch-btn"
-          onclick="
-          loadBatchPrompt();
+        <div
+          class="mt-5 text-center bg-gradient-to-r from-sky-200 text-transparent bg-clip-text border-top-title"
+        >
+          Flowfolio
+        </div>
+        <div class="mt-10 flex justify-center gap-10">
+          <button
+            class="batch-btn"
+            onclick="
+            loadBatchPrompt();
+            "
+          >
+            Load Batch
+          </button>
+          <button
+            class="batch-btn"
+            onclick="
+          newBatchPrompt();
           "
-        >
-          Load Batch
-        </button>
-        <button
-          class="batch-btn"
-          onclick="
-        newBatchPrompt();
-        "
-        >
-          New Batch
-        </button>
-      </div>
-      <div class="mt-10 flex justify-center gap-10">
-        <button
-          class="create-note-btn"
-          onclick="
-          createNotePrompt();
+          >
+            New Batch
+          </button>
+        </div>
+        <div class="mt-10 flex justify-center gap-10">
+          <button
+            class="create-note-btn"
+            onclick="
+            createNotePrompt();
+            "
+          >
+            Create Note
+          </button>
+          <button
+            class="display-notes-btn"
+            onclick="
+            displayBatchNotes();
           "
-        >
-          Create Note
-        </button>
-        <button
-          class="display-notes-btn"
-          onclick="
-          displayBatchNotes();
-        "
-        >
-          Display Notes
-        </button>
-        <button class="save-batch-btn">Save Batch</button>
+          >
+            Display Notes
+          </button>
+          <button
+            class="save-batch-btn"
+            onclick="
+          saveCurrentBatch();
+          "
+          >
+            Save Batch
+          </button>
+        </div>
+        <div class="mt-10 text-center output"></div>
       </div>
-      <div class="mt-10 text-center output"></div>
     </div>
 
     <script src="./functionalities.js"></script>
