@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles.css" />
-    <title>Mini Pad</title>
+    <title>NoteFlow</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body id="root">
@@ -12,62 +12,46 @@
       <h1 class="brand-name">NoteFlow</h1>
       <h6 class="brand-subtext mt-1">by ExoticSolutions</h6>
     </div>
-    <div class="mt-20 text-center">
-      <div class="main-content-title mb-5">
-        <h3>Seamless Notetaking</h3>
-        <p class="brand-subtext mt-2">
-          click Load or New before entering or showing notes...
-        </p>
-      </div>
 
-      <div class="note-taker border border-stone-800 bg-stone-950 rounded">
-        <div class="mt-2 mb-2 notes">
-          <div class="flex justify-center gap-x-4 grid-cols-2">
-            <div>
-              <button
-                class="mt-1 mb-1 border border-stone-900 bg-stone-950 px-3 py-1 rounded main-function-button"
-                onclick="
-                loadUserNotes();
-                "
-              >
-                Load notes
-              </button>
-            </div>
-
-            <div>
-              <button
-                class="mt-1 mb-1 border border-stone-900 bg-stone-950 px-3 py-1 rounded main-function-button"
-                onclick="
-                newNotesBatch();
-                "
-              >
-                New notes
-              </button>
-            </div>
-          </div>
-          <div class="ms-2 flex justify-center gap-x-4 grid-cols-2">
-            <div>
-              <button
-                class="add-note-before mt-1 mb-1 border border-stone-900 bg-stone-950 px-3 py-1 rounded"
-                onclick="
-                appendUserNote();
-                "
-              >
-                Add note
-              </button>
-            </div>
-            <div>
-              <button
-                class="show-notes-before mt-1 mb-1 border border-stone-900 bg-stone-950 px-3 py-1 rounded"
-              >
-                Show notes
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="output"></div>
+    <div class="mt-10 border border-stone-950 rounded bg-stone-700 ms-10 me-10">
+      <div
+        class="mt-5 text-center bg-gradient-to-r from-sky-200 text-transparent bg-clip-text border-top-title"
+      >
+        Flowfolio
       </div>
+      <div class="mt-10 flex justify-center gap-10">
+        <button
+          class="batch-btn"
+          onclick="
+          loadBatchPrompt();
+          "
+        >
+          Load Batch
+        </button>
+        <button
+          class="batch-btn"
+          onclick="
+        newBatchPrompt();
+        "
+        >
+          New Batch
+        </button>
+      </div>
+      <div class="mt-10 flex justify-center gap-10 valid-batch-btn">
+        <button
+          class="create-note-btn"
+          onclick="
+          createNotePrompt();
+          "
+        >
+          Create Note
+        </button>
+        <button class="display-notes-btn">Display Notes</button>
+        <button class="save-batch-btn">Save Batch</button>
+      </div>
+      <div class="mt-10 text-center output"></div>
     </div>
+
     <script src="./functionalities.js"></script>
   </body>
 </html>

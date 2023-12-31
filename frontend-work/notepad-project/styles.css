@@ -1,10 +1,10 @@
 #root {
   background-color: #3d3b40;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .brand-name {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #525ceb;
   font-weight: 800;
   font-style: italic;
@@ -12,78 +12,94 @@
 }
 
 .brand-subtext {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #bfcfe7;
   font-size: x-small;
   font-weight: 450;
 }
 
-.main-content-title {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #bfcfe7;
-  font-weight: 700;
+.border-top-title {
   font-size: 30px;
+  font-weight: 800;
+  font-style: italic;
 }
 
-.note-taker {
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+.batch-btn {
+  border: 1px grey solid;
+  border-radius: 5px;
+  background-color: #555555;
+  padding: 3px;
+  font-weight: 600;
+  color: #bfcfe7;
 }
 
-.notes {
-  background-color: #bfcfe7;
+.invalid-batch-btn {
 }
 
-.main-function-button {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: whitesmoke;
+.valid-batch-btn {
+}
+
+.create-note-btn {
+  border: 1px grey solid;
+  border-radius: 5px;
+  background-color: #555555;
+  padding: 3px;
+  font-weight: 500;
+  color: #bfcfe7;
+}
+
+.display-notes-btn {
+  border: 1px grey solid;
+  border-radius: 5px;
+  background-color: #555555;
+  padding: 3px;
+  font-weight: 500;
+  color: #bfcfe7;
+}
+
+.save-batch-btn {
+  border: 1px grey solid;
+  border-radius: 5px;
+  background-color: #555555;
+  padding: 3px;
+  font-weight: 500;
+  color: #bfcfe7;
+}
+
+.output {
+  font-weight: 700;
+  font-size: 15px;
+  font-style: italic;
+  color: #bfcfe7;
+}
+
+.create-note-input {
+  font-weight: 500;
+  background-color: rgb(217, 215, 215);
+  color: #3d3b40;
   cursor: pointer;
 }
 
-.note-input {
-  color: black;
+.submit-created-note {
+  border: 1px grey solid;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: 375;
+  background-color: #555555;
+  color: #e9cafb;
 }
-/*
 
-ID-buttons classes are used to display the add note and show notes 
-buttons only when a note ID is loaded to store the notes
-*/
-
-.add-note-after {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: whitesmoke;
+.load-notes-input {
+  font-weight: 500;
+  background-color: rgb(217, 215, 215);
+  color: #3d3b40;
   cursor: pointer;
-  display: block;
-}
-.add-note-before {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: whitesmoke;
-  cursor: pointer;
-  display: none;
 }
 
-.show-notes-after {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: whitesmoke;
-  cursor: pointer;
-  display: block;
-}
-
-.show-notes-before {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: whitesmoke;
-  cursor: pointer;
-  display: none;
-}
-
-.load-noteID-input {
-  color: black;
+.submit-load-input {
+  border: 1px grey solid;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: 375;
+  background-color: #555555;
+  color: #e9cafb;
 }
