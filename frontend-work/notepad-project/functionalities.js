@@ -4,6 +4,13 @@ let noteID;
 const min = 129999;
 const max = 999999;
 
+function displayExclusiveElements() {}
+
+function displayBatchNotes() {
+  //create a table where we display each note in a structured organized manner
+  //using tailwind classes and table elements
+}
+
 function loadBatchPrompt() {
   outputElement.innerHTML =
     `<h1>Enter Batch ID Credentials</h1>\n` +

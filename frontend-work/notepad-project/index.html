@@ -24,6 +24,7 @@
           class="batch-btn"
           onclick="
           loadBatchPrompt();
+          displayExclusiveElements();
           "
         >
           Load Batch
@@ -32,6 +33,7 @@
           class="batch-btn"
           onclick="
         newBatchPrompt();
+        displayExclusiveElemnts();
         "
         >
           New Batch
@@ -46,7 +48,14 @@
         >
           Create Note
         </button>
-        <button class="display-notes-btn">Display Notes</button>
+        <button
+          class="display-notes-btn"
+          onclick="
+        displayBatchNotes();
+        "
+        >
+          Display Notes
+        </button>
         <button class="save-batch-btn">Save Batch</button>
       </div>
       <div class="mt-10 text-center output"></div>
