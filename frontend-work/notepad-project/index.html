@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body id="root">
-    <div class="w-full">
+    <div class="">
       <h1 class="brand-name">NoteFlow</h1>
       <h6 class="brand-subtext mt-1">by ExoticSolutions</h6>
     </div>
@@ -24,7 +24,6 @@
           class="batch-btn"
           onclick="
           loadBatchPrompt();
-          displayExclusiveElements();
           "
         >
           Load Batch
@@ -33,13 +32,12 @@
           class="batch-btn"
           onclick="
         newBatchPrompt();
-        displayExclusiveElemnts();
         "
         >
           New Batch
         </button>
       </div>
-      <div class="mt-10 flex justify-center gap-10 valid-batch-btn">
+      <div class="mt-10 flex justify-center gap-10">
         <button
           class="create-note-btn"
           onclick="
@@ -51,7 +49,7 @@
         <button
           class="display-notes-btn"
           onclick="
-        displayBatchNotes();
+          displayBatchNotes();
         "
         >
           Display Notes

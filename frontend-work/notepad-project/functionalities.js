@@ -1,19 +1,25 @@
+//TO-DO 12/31/23 : ALMOST DONE complete whats left: make the create note and buttons in the flex to display only when a Batch ID is loaded using the
+//displayExclusiveElements() function
+//complete the functioon to display all notes using the displayBatchNotes() function
+//make a function to save the notes batch to local storage to be able to load them up again!!
 const outputElement = document.querySelector(".output");
 let currentDataBatch;
 let noteID;
 const min = 129999;
 const max = 999999;
 
-function displayExclusiveElements() {}
-
 function displayBatchNotes() {
-  //create a table where we display each note in a structured organized manner
-  //using tailwind classes and table elements
+  if (noteID !== undefined) {
+    outputElement.innerHTML = createNotesTable();
+    console.log(outputElement);
+  } else if (noteID === undefined) {
+    outputElement.innerHTML = undefinedIDError();
+  }
 }
 
 function loadBatchPrompt() {
   outputElement.innerHTML =
-    `<h1>Enter Batch ID Credentials</h1>\n` +
+    `<h1 class="underline">Enter Batch ID Credentials:</h1>\n` +
     `<input type="text" placeholder="Enter Batch ID" onkeydown="findIDEventCheck(event)" class="mt-4 load-notes-input">\n` +
     `<br>\n` +
     `<button class="mt-4 submit-load-input" onclick="findBatchID()">Find Batch ID</button>`;
@@ -59,8 +65,12 @@ function createNotePrompt() {
       `<br>\n` +
       `<button class="mt-4 submit-created-note" onclick="appendCreatedNote()">Create Note</button>`;
   } else if (noteID === undefined) {
-    outputElement.innerHTML = `<h1>Error: Must load or create new batch in order to use feature!</h1>`;
+    outputElement.innerHTML = undefinedIDError();
   }
+}
+
+function undefinedIDError() {
+  return `<h1>Error: Must load or create new batch in order to use feature!</h1>`;
 }
 
 function appendCreatedNote() {
@@ -101,4 +111,45 @@ function findBatchID() {
 function findErrorPrompt(nullID) {
   console.log(`Error: our records indicate ${nullID} does not exist`);
   outputElement.innerHTML += `\n<h1 class="mt-4">Error: Batch ID does not exist try again</h1>`;
+}
+
+function createNotesTable() {
+  const notesTableElement =
+    `<div class="flex justify-center">\n` +
+    ` <table class="table-auto batch-notes-table">\n` +
+    `  <thead class="border border-stone-950">\n` +
+    `    <tr>\n` +
+    `     <th>\n` +
+    `       Note #\n` +
+    `     </th>\n` +
+    `     <th>\n` +
+    `      Note Content\n` +
+    `     </th>\n` +
+    `   </tr>\n` +
+    `  </thead>\n` +
+    `  <tbody>\n` +
+    `    ${createTableBody()}\n` +
+    `  </tbody>\n` +
+    ` </table>\n` +
+    `</div>`;
+
+  return notesTableElement;
+}
+
+function createTableBody() {
+  const createTableBodyElement = currentDataBatch.Notes.map(
+    (noteContent, index) => {
+      return `
+      <tr key=${index}>
+       <td>
+        ${index + 1}
+       </td>
+       <td>
+        ${noteContent}
+       </td>
+      </tr>`;
+    }
+  );
+
+  return createTableBodyElement;
 }

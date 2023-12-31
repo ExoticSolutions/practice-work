@@ -32,12 +32,6 @@
   color: #bfcfe7;
 }
 
-.invalid-batch-btn {
-}
-
-.valid-batch-btn {
-}
-
 .create-note-btn {
   border: 1px grey solid;
   border-radius: 5px;
@@ -102,4 +96,9 @@
   font-weight: 375;
   background-color: #555555;
   color: #e9cafb;
+}
+
+.batch-notes-table th,
+td {
+  border: 1px grey solid;
 }
