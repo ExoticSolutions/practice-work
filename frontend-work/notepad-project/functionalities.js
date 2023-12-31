@@ -1,67 +1,97 @@
-let currUserNotes;
-let ranNewbatch;
-let currIDContent;
-let temp;
+const outputElement = document.querySelector(".output");
+let currentDataBatch;
 let noteID;
-const outputElement = document.querySelector(`.output`);
-const addNoteElement = document.querySelector(".add-note-before");
-console.log(addNoteElement);
+const min = 129999;
+const max = 999999;
 
-const showNoteElement = document.querySelector(".show-notes-before");
-console.log(showNoteElement);
-
-function loadUserNotes() {
-  temp = `<div class="text-white">
-  <h5>Enter your note ID:</h5>
-  <input type="text" placeholder="Note ID goes here..." class="mt-1 load-noteID-input">
-  <br>
-  <button class="mt-2 border border-white px-3 py-1 rounded">Submit</button>
-  </div>`;
-
-  outputElement.innerHTML = temp;
+function loadBatchPrompt() {
+  outputElement.innerHTML =
+    `<h1>Enter Batch ID Credentials</h1>\n` +
+    `<input type="text" placeholder="Enter Batch ID" onkeydown="findIDEventCheck(event)" class="mt-4 load-notes-input">\n` +
+    `<br>\n` +
+    `<button class="mt-4 submit-load-input" onclick="findBatchID()">Find Batch ID</button>`;
 }
 
-function addNotes() {}
-
-function newNotesBatch() {
-  noteID = Math.ceil(Math.random() * (998999 - 102399) + 102399);
-  currIDContent = `
-  <div class="text-white">
-  Note ID: ${noteID}
-  ${getNoteData()}
-  </div>
-  `;
-  ranNewbatch = true;
-  outputElement.innerHTML = currIDContent;
-
-  showUtilityButtons();
+function newBatchPrompt() {
+  noteID = generateNoteID();
+  /*
+  console.log(`Batch ID Generatred: ${noteID}`);
+  */
+  currentDataBatch = getBatch();
+  /*
+  console.log(currentDataBatch);
+  */
+  outputElement.innerHTML = getBatchInfo();
 }
 
-function getNoteData() {
-  currUserNotes = JSON.parse(localStorage.getItem(`${noteID}`)) || {
-    notes: [],
+function generateNoteID() {
+  const IDgenerated = Math.ceil(Math.random() * (max - min + 1) + min);
+  return IDgenerated;
+}
+
+function getBatch() {
+  const batchObtained = JSON.parse(localStorage.getItem(String(noteID))) || {
+    Notes: [],
   };
-  currUserNotes.notes.push("test");
-  currUserNotes.notes.push("hello");
 
-  console.log(currUserNotes);
-  return currUserNotes.notes;
+  return batchObtained;
 }
 
-function showUtilityButtons() {
-  addNoteElement.classList.remove("add-note-before");
-  addNoteElement.classList.add("add-note-after");
+function getBatchInfo() {
+  const batchInfo = `<h1 class="underline">Batch ID (Save for reference): ${noteID}</h1>`;
 
-  showNoteElement.classList.remove("show-notes-before");
-  showNoteElement.classList.add("show-notes-after");
+  return batchInfo;
 }
 
-function appendUserNote() {
-  if (ranNewbatch) {
-    outputElement.innerHTML = `${currIDContent}<div class="text-white mt-2">
-    <h5 class="mt-2 mb-2">Enter note to add</h5>
-    <input type=text placeholder="enter note to add..." class="bg-white note-input">
-    </div>`;
-  } else if (!ranNewbatch) {
+function createNotePrompt() {
+  if (noteID !== undefined) {
+    outputElement.innerHTML =
+      `${getBatchInfo()}\n` +
+      `<h1 class="mt-5">Create a note:</h1>\n` +
+      `<input type="text" placeholder="Enter Note Content..." onkeydown="appendNoteEventCheck(event)" class="mt-3 create-note-input">\n` +
+      `<br>\n` +
+      `<button class="mt-4 submit-created-note" onclick="appendCreatedNote()">Create Note</button>`;
+  } else if (noteID === undefined) {
+    outputElement.innerHTML = `<h1>Error: Must load or create new batch in order to use feature!</h1>`;
   }
+}
+
+function appendCreatedNote() {
+  const noteValue = document.querySelector(".create-note-input").value;
+  currentDataBatch.Notes.push(noteValue);
+  /*
+  console.log(currentDataBatch.Notes);
+  */
+}
+
+function appendNoteEventCheck(event) {
+  if (event.key === "Enter") {
+    appendCreatedNote();
+  }
+}
+
+function findIDEventCheck(event) {
+  /*
+  console.log(event);
+  */
+  if (event.key === "Enter") {
+    findBatchID();
+  }
+}
+
+function findBatchID() {
+  /*
+  console.log("Finding batch ID...");
+  */
+  const targetID = document.querySelector(".load-notes-input").value;
+  console.log(targetID);
+  currentDataBatch = JSON.parse(localStorage.getItem(String(targetID)));
+  if (currentDataBatch === null) {
+    findErrorPrompt(targetID);
+  }
+}
+
+function findErrorPrompt(nullID) {
+  console.log(`Error: our records indicate ${nullID} does not exist`);
+  outputElement.innerHTML += `\n<h1 class="mt-4">Error: Batch ID does not exist try again</h1>`;
 }
