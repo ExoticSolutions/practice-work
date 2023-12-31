@@ -8,6 +8,18 @@ let noteID;
 const min = 129999;
 const max = 999999;
 
+function saveCurrentBatch() {
+  if (noteID !== undefined) {
+    console.log("Saving batch...");
+    console.time("Completed in:");
+    localStorage.setItem(String(noteID), JSON.stringify(currentDataBatch));
+    console.timeEnd("Completed in:");
+    outputElement.innerHTML = saveSucessfulPrompt();
+  } else if (noteID === undefined) {
+    outputElement.innerHTML = undefinedIDError();
+  }
+}
+
 function displayBatchNotes() {
   if (noteID !== undefined) {
     outputElement.innerHTML = createNotesTable();
@@ -76,6 +88,7 @@ function undefinedIDError() {
 function appendCreatedNote() {
   const noteValue = document.querySelector(".create-note-input").value;
   currentDataBatch.Notes.push(noteValue);
+  document.querySelector(`.create-note-input`).value = ``;
   /*
   console.log(currentDataBatch.Notes);
   */
@@ -105,6 +118,8 @@ function findBatchID() {
   currentDataBatch = JSON.parse(localStorage.getItem(String(targetID)));
   if (currentDataBatch === null) {
     findErrorPrompt(targetID);
+  } else if (currentDataBatch !== null) {
+    outputElement.innerHTML += `<h1>Sucessfully found: ID ${targetID}</h1>`;
   }
 }
 
@@ -115,6 +130,8 @@ function findErrorPrompt(nullID) {
 
 function createNotesTable() {
   const notesTableElement =
+    `  ${getBatchInfo()}\n` +
+    `  <br>\n` +
     `<div class="flex justify-center">\n` +
     ` <table class="table-auto batch-notes-table">\n` +
     `  <thead class="border border-stone-950">\n` +
@@ -152,4 +169,8 @@ function createTableBody() {
   );
 
   return createTableBodyElement;
+}
+
+function saveSucessfulPrompt() {
+  return `<h1>Sucessfully saved batch ID: ${noteID}</h1>`;
 }
