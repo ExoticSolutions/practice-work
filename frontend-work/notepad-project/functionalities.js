@@ -9,22 +9,23 @@ const min = 129999;
 const max = 999999;
 
 function saveCurrentBatch() {
-  if (noteID !== undefined) {
+  if (currentDataBatch !== null) {
     console.log("Saving batch...");
     console.time("Completed in:");
     localStorage.setItem(String(noteID), JSON.stringify(currentDataBatch));
     console.timeEnd("Completed in:");
     outputElement.innerHTML = saveSucessfulPrompt();
-  } else if (noteID === undefined) {
+  } else if (currentDataBatch === null) {
     outputElement.innerHTML = undefinedIDError();
   }
 }
-
+let notey;
+console.log;
 function displayBatchNotes() {
-  if (noteID !== undefined) {
+  if (currentDataBatch !== null || noteID !== undefined) {
     outputElement.innerHTML = createNotesTable();
     console.log(outputElement);
-  } else if (noteID === undefined) {
+  } else if (currentDataBatch === null || noteID === undefined) {
     outputElement.innerHTML = undefinedIDError();
   }
 }
@@ -114,8 +115,10 @@ function findBatchID() {
   console.log("Finding batch ID...");
   */
   const targetID = document.querySelector(".load-notes-input").value;
+  noteID = targetID;
   console.log(targetID);
-  currentDataBatch = JSON.parse(localStorage.getItem(String(targetID)));
+  currentDataBatch = JSON.parse(localStorage.getItem(targetID));
+  console.log(currentDataBatch.Notes);
   if (currentDataBatch === null) {
     findErrorPrompt(targetID);
   } else if (currentDataBatch !== null) {
@@ -172,5 +175,5 @@ function createTableBody() {
 }
 
 function saveSucessfulPrompt() {
-  return `<h1>Sucessfully saved batch ID: ${noteID}</h1>`;
+  return `<h1 class="underline">Sucessfully saved batch ID: ${noteID}</h1>`;
 }
