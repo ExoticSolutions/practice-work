@@ -8,7 +8,14 @@ const requests = {
   featuredPlaylists: `https://api.spotify.com/v1/browse/featured-playlists`,
   newReleases: `https://api.spotify.com/v1/browse/new-releases`,
 };
-
+//HEADS UP TO BE ABLE TO STORE AND USE THE API DATA IN THE
+//FETCH FUNCTION STORE THE API RESPONSE DATA TO LOCALSTORAGE using
+//THE setItem() method then use the getItem() method to get the data without the hassle of
+//using multiple functions to try to solve a problem u cant solve
+//localstorage is a NO-BRAINER
+//REBUILD THE BACCKEND IN A MORE SOPHISTICATED MANNER
+//TOMMOROW DSELETE ALL OF THIS CODE AND REDO THE BACKEND USING LOCAL STORAGE TO STORE API DATA
+//you can use remove Item to remove and restore data from the api call oh my im a fucking genius
 runAPICalls();
 
 function runAPICalls() {
@@ -35,9 +42,8 @@ function mapFeaturedPlaylists(api_data) {
 }
 
 function exportFeaturedPlaylistsData(data) {
-  api_data = data.playlists.items;
-  featuredPlaylistsElement.innerHTML =
-    `<div class= "w-full h-full">\n` +
-    `${mapFeaturedPlaylists(api_data)}\n` +
-    `</div>`;
+  api_data = localStorage.setItem(
+    "featuredPlaylists",
+    JSON.stringify(data.playlists.items)
+  );
 }
