@@ -16,3 +16,6 @@ Guessing Game (Located in /GuessingGame)- guess a number between 1 and 10. compu
 
 
 Cart project simply adds products to a cart using object arrays and mapped out objects in the next project I will work on implementing quantity for products to prevent repetitive content in the cart offcanvas.
+
+
+JokeSnip: using a simple api call jokes are generated. simple user interface will work on implementing getting specific different categories and using conditional statements to gwet the joke the user desires.
