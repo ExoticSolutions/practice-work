@@ -10,4 +10,4 @@ CART_DATA.calcTotal(CART_DATA.qty);
 
 console.log(`BEFORE: ${CART_DATA}`);
 
-console.log(CART_DATA);
+console.log(CART_DATA)
