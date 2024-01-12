@@ -147,7 +147,6 @@ const addCartButtons = document
   .querySelectorAll(".add-cart")
   .forEach((cartButton) => {
     cartButton.addEventListener("click", () => {
-      console.log(cartButton.dataset.productName);
       cartAppend(cartButton.dataset.productName);
     });
   });
@@ -157,7 +156,44 @@ function calcRealPrice(price) {
 }
 
 function cartAppend(targetItem) {
-  console.log("appending to cart");
-  cartQTY++;
-  cartQTYElement.innerHTML = cartQTY;
+  let matchingProduct;
+  popular.forEach((product) => {
+    if (product.name === targetItem) {
+      matchingProduct = product;
+    }
+  });
+
+  if (matchingProduct) {
+    cartQTY++;
+    cartQTYElement.innerHTML = cartQTY;
+    cartCheck(matchingProduct);
+  } else {
+    console.log("product not found");
+  }
+}
+
+function cartCheck(matchingProduct) {
+  console.log("checking cart...");
+
+  let tempObject;
+
+  cart.forEach((item) => {
+    if (matchingProduct.name === item.productName) {
+      tempObject = item;
+    }
+  });
+
+  if (tempObject) {
+    cart.forEach((item) => {
+      if (tempObject.productName === item.productName) {
+        item.qty += 1;
+      }
+    });
+  } else {
+    cart.push({
+      productName: matchingProduct.name,
+      qty: 1,
+    });
+  }
+  console.log(cart);
 }
